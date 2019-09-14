@@ -1,0 +1,29 @@
+<mat-toolbar class="mat-elevation-z6" color="primary">
+  <a routerLink="/" class="app-logo">
+    <span>Kramerius Cloud</span>
+  </a>
+
+  <span class="fill-remaining-space"></span>
+  
+
+  <ng-container *ngIf="auth.isLoggedIn()">   
+    <a routerLink="/users" routerLinkActive="active" mat-button>Uživatelé</a>
+    <a [matMenuTriggerFor]="profile_menu" mat-button>
+        <img *ngIf="auth.user.image" class="app-profile-img" [src]="auth.user.image" id="btn-dropdown-profile">
+        <div *ngIf="!auth.user.image" class="app-profile-img app-profile-txt" id="btn-dropdown-profile">{{ auth.getTextProfileImage() }}</div>
+    </a>
+
+    <mat-menu #profile_menu="matMenu">
+      <button mat-menu-item disabled>
+        <mat-icon>person</mat-icon>
+        <span>{{ auth.user.name }}</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Odhlásit</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+
+</mat-toolbar>

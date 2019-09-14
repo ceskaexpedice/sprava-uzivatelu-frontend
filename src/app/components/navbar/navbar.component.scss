@@ -1,0 +1,40 @@
+mat-toolbar {
+  position: fixed;
+  z-index: 1000;
+  .app-logo {
+    height: 64px;
+    text-decoration: none;
+    color: #fff;
+    span {
+      line-height: 64px;
+    }
+  }
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .mat-button {
+    line-height: 60px;
+    border-radius: 0;
+  }
+
+
+  .app-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 1px;
+    background: #cacaca;
+    cursor: pointer;
+  }
+  .app-profile-txt {
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #dd4b39;
+    font-weight: 600;
+    line-height: 40px;
+  }
+
+
+}
