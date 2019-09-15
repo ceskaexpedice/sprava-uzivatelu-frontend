@@ -41,7 +41,7 @@ export class AuthService {
   login(email: string, password: string, callback: (success: boolean) => void) {
       return this.tokenService.signIn({
         login: email,
-        password: password
+        password
       }).subscribe(
       (response) => {
           this.afterLogin();
@@ -56,9 +56,11 @@ export class AuthService {
       });
   }
 
-  activateAccount(uid: string, token: string, clinecId: string, password: string, passwordConfirmations: string, callback: (success: boolean) => void) {
-      const headers = new HttpHeaders({'uid': uid, 'client': clinecId, 'access-token': token});
-      const options = { headers: headers };
+  activateAccount(uid: string, token: string, clinecId: string, password: string,
+                  passwordConfirmations: string,
+                  callback: (success: boolean) => void) {
+      const headers = new HttpHeaders({ uid, client: clinecId, 'access-token': token});
+      const options = { headers };
       const url = `${this.tokenService.apiBase}/auth/password?password=${password}&password_confirmation=${passwordConfirmations}`;
       this.http.put(url, null, options).subscribe(
           (response) => {
@@ -123,10 +125,10 @@ export class AuthService {
   register(name: string, email: string, password: string, passwordConfirmation: string, callback: (success: boolean) => void) {
       this.tokenService.tokenOptions.registerAccountCallback = window.location.origin + '/login';
       return this.tokenService.registerAccount({
-          name: name,
+          name,
           login: email,
-          password: password,
-          passwordConfirmation: passwordConfirmation
+          password,
+          passwordConfirmation
       }).subscribe(
       (response) => {
           console.log('register success', response);
@@ -155,25 +157,14 @@ export class AuthService {
       return this.tokenService.userSignedIn() && !!this.tokenService.currentUserData;
   }
 
-  getTextProfileImage(): string {
-      const name = this.user.name;
-      if (!name) {
-          return '?';
-      }
-      return name[0];
-  }
-
   private afterLogin() {
     const userData = this.tokenService.currentUserData;
+    console.log('userData', userData);
     if (!userData) {
       // TODO: no user data
-      return
+      return;
     }
-    const user = new User();
-    user.email = userData.uid;
-    user.name = userData.name;
-    user.image = userData.image;
-    this.user = user;
+    this.user = User.fromJson(userData);
   }
 
 

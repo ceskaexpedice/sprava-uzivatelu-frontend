@@ -7,10 +7,13 @@
   
 
   <ng-container *ngIf="auth.isLoggedIn()">   
-    <a routerLink="/users" routerLinkActive="active" mat-button>Uživatelé</a>
+    <ng-container *ngIf="auth.user.isAdmin()">   
+      <a routerLink="/users" routerLinkActive="active" mat-button>Uživatelé</a>
+    </ng-container>
+
     <a [matMenuTriggerFor]="profile_menu" mat-button>
         <img *ngIf="auth.user.image" class="app-profile-img" [src]="auth.user.image" id="btn-dropdown-profile">
-        <div *ngIf="!auth.user.image" class="app-profile-img app-profile-txt" id="btn-dropdown-profile">{{ auth.getTextProfileImage() }}</div>
+        <div *ngIf="!auth.user.image" class="app-profile-img app-profile-txt" id="btn-dropdown-profile">{{ auth.user.getTextProfileImage() }}</div>
     </a>
 
     <mat-menu #profile_menu="matMenu">

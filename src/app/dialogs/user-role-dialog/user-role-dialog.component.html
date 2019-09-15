@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Role</h1>
+
+
+<div mat-dialog-content>
+
+  <mat-form-field>
+    <input 
+        type="text" 
+        matInput 
+        [disabled]="state == 'loading'"
+        [(ngModel)]="role"
+        autocomplete="off"
+        placeholder="Role" 
+        name="role">
+</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions cdk-focus-start>
+  <button mat-raised-button color="primary" (click)="onSave()">Potvrdit</button>
+  <button mat-raised-button (click)="onCancel()">Zrušit</button>
+  <mat-spinner *ngIf="state=='loading'"
+    [strokeWidth]="3" 
+    [diameter]="30">
+  </mat-spinner>
+</div>

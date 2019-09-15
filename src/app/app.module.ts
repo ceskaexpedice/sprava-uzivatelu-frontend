@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
+import { UserRoleDialogComponent } from './dialogs/user-role-dialog/user-role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ApiService } from './services/api.service';
     LoginComponent,
     OmniauthComponent,
     DatePipe,
-    DatetimePipe
+    DatetimePipe,
+    UserRoleDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,11 @@ import { ApiService } from './services/api.service';
     HttpClientModule,
     AngularTokenModule.forRoot({
       apiBase: environment.cloudApiBase,
-      oAuthBase: environment.cloudApiBase,
+      apiPath: environment.cloudApiPath,
+      // oAuthBase: '${environment.cloudApiBase}/${environment.cloudApiPath}',
+      // apiBase: environment.cloudApiBase1,
+      oAuthBase: `${environment.cloudApiBase}/${environment.cloudApiPath}`,
+
       oAuthCallbackPath: 'omniauth',
       oAuthPaths: {
         google: 'auth/google_oauth2',
@@ -53,6 +59,9 @@ import { ApiService } from './services/api.service';
     AngularTokenModule,
     AuthService,
     ApiService
+  ],
+  entryComponents: [
+    UserRoleDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -3,25 +3,44 @@
   <div class="user-list">
     <div class="app-table">
       <div class="app-row app-header">
+        <div class="user-image"></div>
         <div class="user-name">Jméno</div>
         <div class="user-email">E-mail</div>
         <div class="user-provider">Provider</div>
         <div class="user-date">Vytvořen</div>
+        <div class="user-favourites">Oblíbené</div>
         <div class="user-roles">Role</div>
+        <div class="user-actions"></div>
       </div>
     </div>
     <div class="scrollable app-table">
       <div *ngFor="let user of users" class="app-row">
+        <div class="user-image">
+            <img *ngIf="user.image" class="app-profile-img" [src]="user.image" id="btn-dropdown-profile">
+            <div *ngIf="!user.image" class="app-profile-img app-profile-txt" id="btn-dropdown-profile">{{ user.getTextProfileImage() }}</div>
+        </div>
         <div class="user-name">{{ user.name }}</div>
         <div class="user-email">{{ user.email }}</div>
         <div class="user-provider">{{ user.provider }}</div>
         <div class="user-date">{{ user.createdAt | appDate }}</div>
+        <div class="user-favourites">{{ user.favourites }}</div>
         <div class="user-roles">
           <div class="user-roles-in">
-            <span *ngFor="let role of user.roles" [class.admin]="role == 'admin'" class="role">
+            <span *ngFor="let role of user.roles" (click)="removeRole(user, role)" [class.admin]="role == 'admin'" class="role">
+              <b>- </b>
               {{ role }}
             </span>
           </div>
+        </div>
+        <div class="user-actions">
+          <button 
+            (click)="addUserRole(user)"
+            mat-button 
+            mat-icon-button 
+            color="primary" 
+            matTooltip="Přidat roli">
+          <mat-icon>add</mat-icon>
+        </button>
         </div>
       </div>
     </div>

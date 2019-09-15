@@ -1,0 +1,15 @@
+.mat-dialog-content {
+  width: 360px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .mat-form-field {
+    width: 100%;
+  }
+}
+.mat-dialog-actions {
+  display: block;
+  mat-spinner {
+    float: right;
+  }
+  padding-bottom: 18px;
+}

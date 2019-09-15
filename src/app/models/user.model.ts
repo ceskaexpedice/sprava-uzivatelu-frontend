@@ -1,6 +1,7 @@
 
 export class User {
 
+  public id: number;
   public uid: string;
   public provider: string;
   public email: string;
@@ -8,6 +9,7 @@ export class User {
   public roles: string[];
   public image: string;
   public createdAt: Date;
+  public favourites: number;
 
   constructor() {
     this.roles = [];
@@ -15,10 +17,13 @@ export class User {
 
   static fromJson(json): User {
     const user = new User();
+    user.id = json.id;
     user.uid = json.uid;
     user.email = json.email;
+    user.image = json.image;
     user.name = json.name;
     user.provider = json.provider;
+    user.favourites = json.favourites_count;
     if (json.roles) {
       user.roles = json.roles.split(',');
     }
@@ -48,6 +53,12 @@ export class User {
     return this.isAdmin() || this.hasRole(role);
   }
 
+  getTextProfileImage(): string {
+    if (!this.name) {
+        return '?';
+    }
+    return this.name[0];
+}
 
 
 }

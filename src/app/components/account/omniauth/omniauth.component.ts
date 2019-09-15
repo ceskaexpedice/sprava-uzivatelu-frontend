@@ -8,8 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class OmniauthComponent implements OnInit {
 
   constructor(private router: Router,
-    private account: AuthService) {}
-
+              private account: AuthService) {}
 
   ngOnInit() {
     this.account.processOAuthCallback((success) => {
