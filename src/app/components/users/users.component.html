@@ -1,1 +1,29 @@
-Users ...
+<div class="users" *ngIf="users">
+
+  <div class="user-list">
+    <div class="app-table">
+      <div class="app-row app-header">
+        <div class="user-name">Jméno</div>
+        <div class="user-email">E-mail</div>
+        <div class="user-provider">Provider</div>
+        <div class="user-date">Vytvořen</div>
+        <div class="user-roles">Role</div>
+      </div>
+    </div>
+    <div class="scrollable app-table">
+      <div *ngFor="let user of users" class="app-row">
+        <div class="user-name">{{ user.name }}</div>
+        <div class="user-email">{{ user.email }}</div>
+        <div class="user-provider">{{ user.provider }}</div>
+        <div class="user-date">{{ user.createdAt | appDate }}</div>
+        <div class="user-roles">
+          <div class="user-roles-in">
+            <span *ngFor="let role of user.roles" [class.admin]="role == 'admin'" class="role">
+              {{ role }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+$primary-color: #3f51b5;
+$warn-color: #bb2424;
+
+.users {
+  height: calc(100% - 50px);
+  padding: 20px;
+  .actions {
+    height: 55px;
+  }
+  .user-list {
+    height: calc(100% - 55px);
+    .scrollable {
+      max-height: calc(100% - 56px);
+      overflow: auto;
+    }
+    .user-name {
+      width: 200px;
+    }
+    .user-email {
+      width: 250px;
+    }
+    .user-provider {
+      width: 150px;
+    }
+    .user-date {
+      width: 140px;
+    }
+    .user-roles {
+      flex:1;
+      text-align: right;
+      .role {
+        padding: 5px 10px;
+        background: $primary-color;
+        color: #ffffff;
+        border-radius: 7px;
+        margin-left: 8px;
+        &.admin {
+          background: $warn-color;
+        }
+      }
+    }
+  }
+}

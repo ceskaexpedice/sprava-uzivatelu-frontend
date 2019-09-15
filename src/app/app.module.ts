@@ -1,3 +1,5 @@
+import { DatetimePipe } from './components/pipes/datetime.pipe';
+import { DatePipe } from './components/pipes/date.pipe';
 import { UsersComponent } from './components/users/users.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,7 +17,6 @@ import { OmniauthComponent } from './components/account/omniauth/omniauth.compon
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppSettings } from './services/app-settings';
 import { ApiService } from './services/api.service';
 
 @NgModule({
@@ -25,7 +26,9 @@ import { ApiService } from './services/api.service';
     HomeComponent,
     UsersComponent,
     LoginComponent,
-    OmniauthComponent
+    OmniauthComponent,
+    DatePipe,
+    DatetimePipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,6 @@ import { ApiService } from './services/api.service';
   providers: [
     AngularTokenModule,
     AuthService,
-    AppSettings,
     ApiService
   ],
   bootstrap: [AppComponent]
