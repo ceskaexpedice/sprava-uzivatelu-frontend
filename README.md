@@ -1,4 +1,7 @@
 ## Správa uživatelů / Frontend
+Komponenta Správa uživatelů je připravena pro systém Kramerius a aplikaci ProArc.
+
+12/2019 byla uveřejněna alfa verze, u které se předpokládá primární testování u digitálniknihovny.cz. Verze je určena pro využití s Krameriem verze 7, která bude testována v prvním čtvrtletí 2020
 
 Přihlášený uživatel
 ·         Centrální správa uživatelů
